@@ -29,7 +29,6 @@ public class CoinWatch
         TResponse? response = new TResponse();
         HttpResponseMessage result;
         string content;
-        
         request.ApiKey = _apiKey;
 
         using HttpRequestMessage message = new HttpRequestMessage { Method = request.Method };
