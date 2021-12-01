@@ -8,8 +8,20 @@ namespace CoinWatch.Net.Requests;
 
 public class SingleCoinHistoryRequest : BaseRequest<SingleCoinHistoryResponse>
 {
+    public Currency Currency { get; }
+    
+    public Code Code { get; }
+    
+    public DateTime Start { get; }
+    
+    public DateTime End { get; }
+    
     public SingleCoinHistoryRequest(Currency currency, Code code, DateTime start, DateTime end)
     {
+        Currency = currency;
+        Code = code;
+        Start = start;
+        End = end;
         EndpointUrl = "/coins/single/history";
         Params = JsonSerializer.Serialize(new SingleCoinHistoryParams(currency, code, start, end), SingleCoinHistoryParamsJsonContext.Default.SingleCoinHistoryParams);
     }
