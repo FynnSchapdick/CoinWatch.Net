@@ -14,6 +14,7 @@ namespace CoinWatch.Net
         private readonly string _apiKey;
         private readonly HttpClient _client;
         private readonly Uri _baseUri;
+        private readonly JsonSerializerOptions _options;
 
         public CoinWatch(string apiKey, HttpClient client)
         {
@@ -21,6 +22,11 @@ namespace CoinWatch.Net
             _baseUri = new Uri("https://api.livecoinwatch.com");
             _client = client;
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _options = new JsonSerializerOptions()
+            {
+                DictionaryKeyPolicy  = JsonNamingPolicy.CamelCase,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
         }
 
         public async Task<TResponse?> SendRequestAsync<TRequest, TResponse>(TRequest request)
@@ -51,7 +57,8 @@ namespace CoinWatch.Net
 #if (NET6_0 || NET6_0_WINDOWS)
                         Credit? credit = JsonSerializer.Deserialize(content, CreditJsonContext.Default.Credit);
 #else
-                        Credit? credit = JsonSerializer.Deserialize<Credit>(content);
+                        
+                        Credit? credit = JsonSerializer.Deserialize<Credit>(content, _options);
 #endif
                         response = new CreditResponse(credit) as TResponse;
                         response.StatusCode = result.StatusCode;
@@ -69,12 +76,8 @@ namespace CoinWatch.Net
                         SingleCoinHistory? singleCoinHistory =
                             JsonSerializer.Deserialize(content, SingleCoinHistoryJsonContext.Default.SingleCoinHistory);
 #else
-                         JsonSerializerOptions options = new JsonSerializerOptions()
-                        {
-                          DictionaryKeyPolicy  = JsonNamingPolicy.CamelCase,
-                          PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                        };
-                        SingleCoinHistory? singleCoinHistory = JsonSerializer.Deserialize<SingleCoinHistory>(content, options);
+
+                        SingleCoinHistory? singleCoinHistory = JsonSerializer.Deserialize<SingleCoinHistory>(content, _options);
 #endif
                         response = new SingleCoinHistoryResponse(singleCoinHistory) as TResponse;
                         response.StatusCode = result.StatusCode;
