@@ -27,7 +27,12 @@ namespace CoinWatch.Net.Requests
                 Params =
  JsonSerializer.Serialize(new SingleCoinHistoryParams(currency, code, start, end), SingleCoinHistoryParamsJsonContext.Default.SingleCoinHistoryParams);
 #else
-            Params = JsonSerializer.Serialize(new SingleCoinHistoryParams(currency, code, start, end));
+            JsonSerializerOptions options = new JsonSerializerOptions()
+            {
+              DictionaryKeyPolicy  = JsonNamingPolicy.CamelCase,
+              PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            Params = JsonSerializer.Serialize(new SingleCoinHistoryParams(currency, code, start, end), options);
 #endif
         }
     }

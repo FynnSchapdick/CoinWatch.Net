@@ -49,7 +49,7 @@ namespace CoinWatch.Net
                         result = await _client.SendAsync(message);
                         content = await result.Content.ReadAsStringAsync();
 #if (NET6_0 || NET6_0_WINDOWS)
-                Credit? credit = JsonSerializer.Deserialize(content, CreditJsonContext.Default.Credit);
+                        Credit? credit = JsonSerializer.Deserialize(content, CreditJsonContext.Default.Credit);
 #else
                         Credit? credit = JsonSerializer.Deserialize<Credit>(content);
 #endif
@@ -61,14 +61,20 @@ namespace CoinWatch.Net
                         message.RequestUri = _baseUri.AddUriEndpoint(request?.EndpointUrl);
                         message.Content = new StringContent(singleCoinHistoryRequest.Params, Encoding.UTF8,
                             "application/json");
+
                         message.Content.Headers.Add("x-api-key", new[] {singleCoinHistoryRequest.ApiKey});
                         result = await _client.SendAsync(message);
                         content = await result.Content.ReadAsStringAsync();
 #if (NET6_0 || NET6_0_WINDOWS)
-                SingleCoinHistory? singleCoinHistory =
- JsonSerializer.Deserialize(content, SingleCoinHistoryJsonContext.Default.SingleCoinHistory);
+                        SingleCoinHistory? singleCoinHistory =
+                            JsonSerializer.Deserialize(content, SingleCoinHistoryJsonContext.Default.SingleCoinHistory);
 #else
-                        SingleCoinHistory? singleCoinHistory = JsonSerializer.Deserialize<SingleCoinHistory>(content);
+                         JsonSerializerOptions options = new JsonSerializerOptions()
+                        {
+                          DictionaryKeyPolicy  = JsonNamingPolicy.CamelCase,
+                          PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                        };
+                        SingleCoinHistory? singleCoinHistory = JsonSerializer.Deserialize<SingleCoinHistory>(content, options);
 #endif
                         response = new SingleCoinHistoryResponse(singleCoinHistory) as TResponse;
                         response.StatusCode = result.StatusCode;
