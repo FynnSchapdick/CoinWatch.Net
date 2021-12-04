@@ -1,8 +1,9 @@
 ﻿using System.Net;
 
-namespace CoinWatch.Net.Responses;
-
-public class BaseResponse
+namespace CoinWatch.Net.Responses
 {
-    public HttpStatusCode StatusCode { get; set; }
+    public class BaseResponse
+    {
+        public HttpStatusCode StatusCode { get; set; }
+    }
 }

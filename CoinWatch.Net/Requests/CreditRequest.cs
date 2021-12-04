@@ -1,12 +1,13 @@
 ﻿
 using CoinWatch.Net.Responses;
 
-namespace CoinWatch.Net.Requests;
-
-public class CreditRequest : BaseRequest<CreditResponse>
+namespace CoinWatch.Net.Requests
 {
-    public CreditRequest()
+    public class CreditRequest : BaseRequest<CreditResponse>
     {
-        EndpointUrl = "/credits";
+        public CreditRequest()
+        {
+            EndpointUrl = "/credits";
+        }
     }
 }

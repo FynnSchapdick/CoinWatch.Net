@@ -1,16 +1,17 @@
 ﻿using CoinWatch.Net.Models;
 
-namespace CoinWatch.Net.Responses;
-
-public class SingleCoinHistoryResponse : BaseResponse
+namespace CoinWatch.Net.Responses
 {
-    public SingleCoinHistory SingleCoinHistory { get; }
-    public SingleCoinHistoryResponse(SingleCoinHistory singleCoinHistory)
+    public class SingleCoinHistoryResponse : BaseResponse
     {
-        SingleCoinHistory = singleCoinHistory;
-    }
+        public SingleCoinHistory SingleCoinHistory { get; }
+        public SingleCoinHistoryResponse(SingleCoinHistory singleCoinHistory)
+        {
+            SingleCoinHistory = singleCoinHistory;
+        }
 
-    public SingleCoinHistoryResponse()
-    {
+        public SingleCoinHistoryResponse()
+        {
+        }
     }
 }

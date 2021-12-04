@@ -1,7 +1,8 @@
-﻿namespace CoinWatch.Net.Enums;
-
-public enum Currency
+﻿namespace CoinWatch.Net.Enums
 {
-    EUR = 0,
-    USD = 1
+    public enum Currency
+    {
+        EUR = 0,
+        USD = 1
+    }
 }

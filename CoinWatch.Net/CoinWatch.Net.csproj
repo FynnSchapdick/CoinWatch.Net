@@ -3,8 +3,17 @@
     <PropertyGroup>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
+        <TargetFrameworks>net6.0;net6.0-windows;netcoreapp3.1</TargetFrameworks>
+        <LangVersion>latestMajor</LangVersion>
+       
     </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="CoinHistoryJsonContext.cs" Condition="'$(TargetFramework)' != 'net6.0' or '$(TargetFramework)' != 'net6.0-windows'"/>
+        <Compile Remove="CreditJsonContext.cs" Condition="'$(TargetFramework)' != 'net6.0' or '$(TargetFramework)' != 'net6.0-windows'"/>
+        <Compile Remove="SingleCoinHistoryJsonContext.cs" Condition="'$(TargetFramework)' != 'net6.0' or '$(TargetFramework)' != 'net6.0-windows'"/>
+        <Compile Remove="SingleCoinHistoryParamsJsonContext.cs" Condition="'$(TargetFramework)' != 'net6.0' or '$(TargetFramework)' != 'net6.0-windows'"/>
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />

@@ -1,8 +1,9 @@
-﻿namespace CoinWatch.Net.Models;
-
-public class Credit
+﻿namespace CoinWatch.Net.Models
 {
-    public int DailyCreditsLimit { get; set; } = default!;
+    public class Credit
+    {
+        public int DailyCreditsLimit { get; set; } = default!;
 
-    public int DailyCreditsRemaining { get; set; } = default!;
+        public int DailyCreditsRemaining { get; set; } = default!;
+    }
 }

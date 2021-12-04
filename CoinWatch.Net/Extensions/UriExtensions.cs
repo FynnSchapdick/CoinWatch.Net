@@ -1,11 +1,12 @@
-﻿namespace CoinWatch.Net.Extensions;
-
-public static class UriExtensions
+﻿namespace CoinWatch.Net.Extensions
 {
-    public static Uri AddUriEndpoint(this Uri baseUri, string? endpoint)
+    public static class UriExtensions
     {
-        Uri uri = new Uri(baseUri, endpoint);
-        UriBuilder uriBuilder = new UriBuilder(uri);
-        return uriBuilder.Uri;
+        public static Uri AddUriEndpoint(this Uri baseUri, string? endpoint)
+        {
+            Uri uri = new Uri(baseUri, endpoint);
+            UriBuilder uriBuilder = new UriBuilder(uri);
+            return uriBuilder.Uri;
+        }
     }
 }

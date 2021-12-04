@@ -1,11 +1,12 @@
 ﻿using CoinWatch.Net.Responses;
 
-namespace CoinWatch.Net.Requests;
-
-public class StatusRequest : BaseRequest<StatusResponse>
+namespace CoinWatch.Net.Requests
 {
-    public StatusRequest()
+    public class StatusRequest : BaseRequest<StatusResponse>
     {
-        EndpointUrl = "/status";
+        public StatusRequest()
+        {
+            EndpointUrl = "/status";
+        }
     }
 }

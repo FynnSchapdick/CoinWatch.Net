@@ -1,12 +1,13 @@
-﻿namespace CoinWatch.Net.Models;
-
-public class CoinHistory
+﻿namespace CoinWatch.Net.Models
 {
-    public long Date { get; set; }
+    public class CoinHistory
+    {
+        public long Date { get; set; }
     
-    public decimal Rate { get; set; }
+        public decimal Rate { get; set; }
     
-    public decimal Volume { get; set; }
+        public decimal Volume { get; set; }
     
-    public decimal Cap { get; set; }
+        public decimal Cap { get; set; }
+    }
 }

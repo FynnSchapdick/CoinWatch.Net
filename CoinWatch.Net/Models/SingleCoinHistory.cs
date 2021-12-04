@@ -1,6 +1,7 @@
-﻿namespace CoinWatch.Net.Models;
-
-public class SingleCoinHistory
+﻿namespace CoinWatch.Net.Models
 {
-    public CoinHistory[] History { get; set; }
+    public class SingleCoinHistory
+    {
+        public CoinHistory[] History { get; set; }
+    }
 }
